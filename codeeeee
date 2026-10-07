@@ -1,0 +1,61 @@
+CREATE DATABASE movie;
+
+USE movie;
+
+CREATE TABLE snday
+(
+movieid INT PRIMARY KEY,
+moviename VARCHAR(25) NOT NULL,
+category VARCHAR(25),
+releasedate DATE,
+productioncost INT,
+businesscost INT
+);
+
+INSERT INTO snday
+VALUES
+(1,'RRR','Action','2022-03-25',550000000,1200000000),
+(2,'Dangal','Sports','2016-12-23',70000000,2000000000),
+(3,'Jawan','Action','2023-09-07',300000000,1100000000),
+(4,'3 Idiots','Comedy','2009-12-25',55000000,460000000),
+(5,'Pathaan','Action','2023-01-25',250000000,1050000000);
+
+SELECT * FROM snday;
+
+ALTER TABLE snday ADD sports1 VARCHAR(25) FIRST;
+
+ALTER TABLE snday ADD car VARCHAR(25) AFTER sports1;
+
+ALTER TABLE snday ADD bike VARCHAR(20) AFTER businesscost;
+
+ALTER TABLE snday DROP sports1, DROP bike;
+
+ALTER TABLE snday ADD remarks VARCHAR(25);
+
+UPDATE snday SET remarks="good" WHERE movieid=1;
+
+UPDATE snday SET remarks="dirty";
+
+UPDATE snday SET productioncost=550000000 WHERE movieid=1;
+
+UPDATE snday SET productioncost=70000000 WHERE movieid=2;
+
+UPDATE snday SET productioncost=300000000 WHERE movieid=3;
+
+UPDATE snday SET productioncost=55000000 WHERE movieid=4;
+
+UPDATE snday SET productioncost=250000000 WHERE movieid=5;
+
+UPDATE snday SET releasedate=CURDATE() WHERE movieid=2;
+
+UPDATE snday SET releasedate=CURDATE()
+WHERE category='action' OR productioncost=55000000;
+
+UPDATE snday SET releasedate=CURDATE()
+WHERE category='action';
+
+UPDATE snday SET moviename='omg' WHERE movieid=1;
+
+DELETE FROM snday WHERE movieid=3;
+
+SELECT * FROM snday;
