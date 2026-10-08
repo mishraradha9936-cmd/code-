@@ -1,0 +1,475 @@
+
+
+
+-> create database movie;
+->use movie;   
+
+->CREATE TABLE snday
+(
+    movieid INT PRIMARY KEY,
+    moviename VARCHAR(25) NOT NULL,
+    category VARCHAR(25),
+    releasedate DATE,
+    productioncost INT,
+    businesscost INT
+);
+
+-> INSERT INTO snday
+VALUES
+(1,'RRR','Action','2022-03-25',550000000,1200000000),
+(2,'Dangal','Sports','2016-12-23',70000000,2000000000),
+(3,'Jawan','Action','2023-09-07',300000000,1100000000),
+(4,'3 Idiots','Comedy','2009-12-25',55000000,460000000),
+(5,'Pathaan','Action','2023-01-25',250000000,1050000000),
+(6,'Drishyam','Thriller','2015-07-31',38000000,110000000);
+
+->select * from snday;
+
+# OUTPUT
+# +---------+----------+----------+-------------+----------------+--------------+
+# | movieid | moviename| category | releasedate | productioncost | businesscost |
+# +---------+----------+----------+-------------+----------------+--------------+
+# | 1       | RRR      | Action   | 2022-03-25  | 550000000      | 1200000000   |
+# | 2       | Dangal   | Sports   | 2016-12-23  | 70000000       | 2000000000   |
+# | 3       | Jawan    | Action   | 2023-09-07  | 300000000      | 1100000000   |
+# | 4       | 3 Idiots | Comedy   | 2009-12-25  | 55000000       | 460000000    |
+# | 5       | Pathaan  | Action   | 2023-01-25  | 250000000      | 1050000000   |
+# | 6       | Drishyam | Thriller | 2015-07-31  | 38000000       | 110000000    |
+# +---------+----------+----------+-------------+----------------+--------------+--------------+
+
+
+# ============================================================
+# 6. ADD sports1 COLUMN
+# ADD adds a new column.
+# FIRST places the column at the beginning.
+# ============================================================
+
+Alter table snday add sports1 varchar(25) First;
+
+# OUTPUT
+# Query OK, 0 rows affected
+
+
+# ============================================================
+# 7. DISPLAY DATA
+# ============================================================
+
+select * from snday;
+
+# OUTPUT
+# sports1 appears as the first column.
+
+
+# ============================================================
+# 8. ADD car COLUMN
+#
+# The original screenshot code was:
+# Alter table snday add car after sports1 varchar(25);
+#
+# This syntax is incorrect.
+# VARCHAR(25) must come immediately after car.
+# AFTER sports1 places car after sports1.
+# ============================================================
+
+Alter table snday add car varchar(25) after sports1;
+
+# OUTPUT
+# Query OK, 0 rows affected
+
+
+# ============================================================
+# 9. DISPLAY DATA
+# ============================================================
+
+select * from snday;
+
+# OUTPUT
+# car appears after sports1.
+
+
+# ============================================================
+# 10. ADD bike COLUMN
+# AFTER businesscost places bike after businesscost.
+# ============================================================
+
+alter table snday add bike varchar(20) after businesscost;
+
+# OUTPUT
+# Query OK, 0 rows affected
+
+
+# ============================================================
+# 11. DISPLAY DATA
+# ============================================================
+
+select * from snday;
+
+# OUTPUT
+# bike appears after businesscost.
+
+
+# ============================================================
+# 12. DROP sports1 AND bike
+# DROP removes the complete column from the table.
+# ============================================================
+
+ALTER TABLE snday DROP sports1, DROP bike;
+
+# OUTPUT
+# Query OK, 0 rows affected
+
+
+# ============================================================
+# 13. ADD remarks COLUMN
+# Adds a new column named remarks.
+# ============================================================
+
+ALTER TABLE snday ADD remarks VARCHAR(25);
+
+# OUTPUT
+# Query OK, 0 rows affected
+
+
+# ============================================================
+# 14. DISPLAY DATA
+# ============================================================
+
+select * from snday;
+
+# OUTPUT
+# remarks column appears in the table.
+
+
+# ============================================================
+# 15. UPDATE ONE RECORD
+# WHERE movieid=1 selects only movieid 1.
+# ============================================================
+
+update snday set remarks="good" where movieid=1;
+
+# OUTPUT
+# Query OK, 1 row affected
+
+
+# ============================================================
+# 16. DISPLAY DATA
+# ============================================================
+
+select * from snday;
+
+# OUTPUT
+# movieid 1 has remarks = good.
+
+
+# ============================================================
+# 17. UPDATE ALL REMARKS
+# No WHERE condition means all records are updated.
+# ============================================================
+
+update snday set remarks="dirty";
+
+# OUTPUT
+# Query OK, 6 rows affected
+
+
+# ============================================================
+# 18. UPDATE PRODUCTION COST - MOVIE 1
+# ============================================================
+
+UPDATE snday SET productioncost = 550000000 WHERE movieid = 1;
+
+# OUTPUT
+# Query OK, 0 rows affected
+
+
+# ============================================================
+# 19. UPDATE PRODUCTION COST - MOVIE 2
+# ============================================================
+
+UPDATE snday SET productioncost = 70000000 WHERE movieid = 2;
+
+# OUTPUT
+# Query OK, 0 rows affected
+
+
+# ============================================================
+# 20. UPDATE PRODUCTION COST - MOVIE 3
+# ============================================================
+
+UPDATE snday SET productioncost = 300000000 WHERE movieid = 3;
+
+# OUTPUT
+# Query OK, 0 rows affected
+
+
+# ============================================================
+# 21. UPDATE PRODUCTION COST - MOVIE 4
+# ============================================================
+
+UPDATE snday SET productioncost = 55000000 WHERE movieid = 4;
+
+# OUTPUT
+# Query OK, 0 rows affected
+
+
+# ============================================================
+# 22. UPDATE PRODUCTION COST - MOVIE 5
+# ============================================================
+
+UPDATE snday SET productioncost = 250000000 WHERE movieid = 5;
+
+# OUTPUT
+# Query OK, 0 rows affected
+
+
+# ============================================================
+# 23. UPDATE PRODUCTION COST - MOVIE 6
+# ============================================================
+
+UPDATE snday SET productioncost = 38000000 WHERE movieid = 6;
+
+# OUTPUT
+# Query OK, 0 rows affected
+
+
+# ============================================================
+# 24. UPDATE RELEASE DATE OF MOVIE 2
+# CURDATE() returns the current date.
+# ============================================================
+
+update snday set releasedate=curdate() where movieid=2;
+
+# OUTPUT
+# Query OK, 1 row affected
+
+
+# ============================================================
+# 25. DISPLAY DATA
+# ============================================================
+
+select * from snday;
+
+# OUTPUT
+# movieid 2 now has the current date.
+
+
+# ============================================================
+# 26. UPDATE USING OR
+# If either condition is true, the record is updated.
+# ============================================================
+
+UPDATE snday SET releasedate=CURDATE()
+WHERE category='action' OR productioncost=55000000;
+
+# OUTPUT
+# Query OK, 4 rows affected
+
+
+# ============================================================
+# 27. UPDATE ALL ACTION MOVIES
+# Only records with category = action are selected.
+# ============================================================
+
+UPDATE snday SET releasedate=CURDATE()
+WHERE category='action';
+
+# OUTPUT
+# Query OK, 2 rows affected
+
+
+# ============================================================
+# 28. CHANGE MOVIE NAME
+# Changes the name of movieid 1 from RRR to omg.
+# ============================================================
+
+update snday set moviename='omg' where movieid=1;
+
+# OUTPUT
+# Query OK, 1 row affected
+
+
+# ============================================================
+# 29. DISPLAY DATA
+# ============================================================
+
+select * from snday;
+
+# OUTPUT
+# movieid 1 now has moviename = omg.
+
+
+# ============================================================
+# 30. DELETE MOVIEID 3
+# DELETE removes a record from the table.
+# WHERE movieid=3 means only movieid 3 is deleted.
+# ============================================================
+
+DELETE FROM snday WHERE movieid=3;
+
+# OUTPUT
+# Query OK, 1 row affected
+
+
+# ============================================================
+# 31. FINAL DISPLAY
+# ============================================================
+
+select * from snday;
+
+# OUTPUT
+#
+# +---------+----------+----------+-------------+----------------+--------------+---------+
+# | movieid | moviename| category | releasedate | productioncost | businesscost | remarks |
+# +---------+----------+----------+-------------+----------------+--------------+---------+
+# | 1       | omg      | Action   | current date | 550000000    | 1200000000   | dirty   |
+# | 2       | Dangal   | Sports   | current date | 70000000     | 2000000000   | dirty   |
+# | 4       | 3 Idiots | Comedy   | current date | 55000000     | 460000000    | dirty   |
+# | 5       | Pathaan  | Action   | current date | 250000000    | 1050000000   | dirty   |
+# | 6       | Drishyam | Thriller | 2015-07-31   | 38000000     | 110000000    | dirty   |
+# +---------+----------+----------+-------------+----------------+--------------+---------+
+
+use movie;
+DROP TABLE IF EXISTS empl;
+
+CREATE TABLE empl (
+  empno decimal(4,0) primary key  NOT NULL,
+  ename varchar(10) NOT NULL,
+  job varchar(9) default NULL,
+  mgr decimal(4,0) default NULL,
+  hiredate date default NULL,
+  sal decimal(7,2) default NULL,
+  comm decimal(7,2) default NULL,
+  deptno decimal(2,0) default NULL
+);
+
+DROP TABLE IF EXISTS dept;
+
+CREATE TABLE dept (
+  deptno decimal(2,0) default NULL,
+  dname varchar(14) default NULL,
+  loc varchar(13) default NULL
+);
+
+INSERT INTO Empl VALUES ('8369','SMITH','CLERK','8902','1990-12-18','800.00',NULL,'20');
+INSERT INTO Empl VALUES ('8499','ANYA','SALESMAN','8698','1991-02-20','1600.00','300.00','30');
+INSERT INTO Empl VALUES ('8521','SETH','SALESMAN','8698','1991-02-22','1250.00','500.00','30');
+INSERT INTO Empl VALUES ('8566','MAHADEVAN','MANAGER','8839','1991-04-02','2985.00',NULL,'20');
+INSERT INTO Empl VALUES ('8654','MOMIN','SALESMAN','8698','1991-09-28','1250.00','1400.00','30');
+INSERT INTO Empl VALUES ('8698','BINA','MANAGER','8839','1991-05-01','2850.00',NULL,'30');
+INSERT INTO Empl VALUES ('8882','SHIAVNSH','MANAGER','8839','1991-06-09','2450.00',NULL,'10');
+INSERT INTO Empl VALUES ('8888','SCOTT','ANALYST','8566','1992-12-09','3000.00',NULL,'20');
+INSERT INTO Empl VALUES ('8839','AMIR','PRESIDENT',NULL,'1991-11-18','5000.00',NULL,'10');
+INSERT INTO Empl VALUES ('8844','KULDEEP','SALESMAN','8698','1991-09-08','1500.00','0.00','30');
+INSERT INTO Empl VALUES ('8886','ANOOP','CLERK','8888','1993-01-12','1100.00',NULL,'20');
+INSERT INTO Empl VALUES ('8900','JATIN','CLERK','8698','1991-12-03','950.00',NULL,'30');
+INSERT INTO Empl VALUES ('8902','FAKIR','ANALYST','8566','1991-12-03','3000.00',NULL,'20');
+INSERT INTO Empl VALUES ('8934','MITA','CLERK','8882','1992-01-23','1300.00',NULL,'10');
+
+INSERT INTO dept VALUES ('10','ACCOUNTING','NEW DELHI');
+INSERT INTO dept VALUES ('20','RESEARCH','CHENNAI');
+INSERT INTO dept VALUES ('30','SALES','KOLKATA');
+INSERT INTO dept VALUES ('40','OPERATIONS', 'MUMBAI');
+
+select * from empl;
+#OUTPUT:::
++-------+-----------+-----------+------+------------+---------+---------+--------+
+| empno | ename     | job       | mgr  | hiredate   | sal     | comm    | deptno |
++-------+-----------+-----------+------+------------+---------+---------+--------+
+|  8369 | SMITH     | CLERK     | 8902 | 1990-12-18 |  800.00 |    NULL |     20 |
+|  8499 | ANYA      | SALESMAN  | 8698 | 1991-02-20 | 1600.00 |  300.00 |     30 |
+|  8521 | SETH      | SALESMAN  | 8698 | 1991-02-22 | 1250.00 |  500.00 |     30 |
+|  8566 | MAHADEVAN | MANAGER   | 8839 | 1991-04-02 | 2985.00 |    NULL |     20 |
+|  8654 | MOMIN     | SALESMAN  | 8698 | 1991-09-28 | 1250.00 | 1400.00 |     30 |
+|  8698 | BINA      | MANAGER   | 8839 | 1991-05-01 | 2850.00 |    NULL |     30 |
+|  8839 | AMIR      | PRESIDENT | NULL | 1991-11-18 | 5000.00 |    NULL |     10 |
+|  8844 | KULDEEP   | SALESMAN  | 8698 | 1991-09-08 | 1500.00 |    0.00 |     30 |
+|  8882 | SHIAVNSH  | MANAGER   | 8839 | 1991-06-09 | 2450.00 |    NULL |     10 |
+|  8886 | ANOOP     | CLERK     | 8888 | 1993-01-12 | 1100.00 |    NULL |     20 |
+|  8888 | SCOTT     | ANALYST   | 8566 | 1992-12-09 | 3000.00 |    NULL |     20 |
+|  8900 | JATIN     | CLERK     | 8698 | 1991-12-03 |  950.00 |    NULL |     30 |
+|  8902 | FAKIR     | ANALYST   | 8566 | 1991-12-03 | 3000.00 |    NULL |     20 |
+|  8934 | MITA      | CLERK     | 8882 | 1992-01-23 | 1300.00 |    NULL |     10 |
+
+-> desc empl;
+-> alter table empl modify comm int;
+-> desc empl;
+# OUTPUT>>>>>>
++----------+--------------+------+-----+---------+-------+
+| Field    | Type         | Null | Key | Default | Extra |
++----------+--------------+------+-----+---------+-------+
+| empno    | decimal(4,0) | NO   | PRI | NULL    |       |
+| ename    | varchar(10)  | NO   |     | NULL    |       |
+| job      | varchar(9)   | YES  |     | NULL    |       |
+| mgr      | decimal(4,0) | YES  |     | NULL    |       |
+| hiredate | date         | YES  |     | NULL    |       |
+| sal      | decimal(7,2) | YES  |     | NULL    |       |
+| comm     | int          | YES  |     | NULL    |       |
+| deptno   | decimal(2,0) | YES  |     | NULL    |       |
++----------+--------------+------+-----+---------+-------+
+
+
+-> alter table empl change comm commission int;
+-> desc empl;
++------------+--------------+------+-----+---------+-------+
+| Field      | Type         | Null | Key | Default | Extra |
++------------+--------------+------+-----+---------+-------+
+| empno      | decimal(4,0) | NO   | PRI | NULL    |       |
+| ename      | varchar(10)  | NO   |     | NULL    |       |
+| job        | varchar(9)   | YES  |     | NULL    |       |
+| mgr        | decimal(4,0) | YES  |     | NULL    |       |
+| hiredate   | date         | YES  |     | NULL    |       |   #comm to commission change.........
+| sal        | decimal(7,2) | YES  |     | NULL    |       |
+| commission | int          | YES  |     | NULL    |       |
+| deptno     | decimal(2,0) | YES  |     | NULL    |       |
++------------+--------------+------+-----+---------+-------+
+
+-> alter table empl drop primary key;
+
+-> desc empl;
+
+## OUTPUT::: 
++------------+--------------+------+-----+---------+-------+
+| Field      | Type         | Null | Key | Default | Extra |
++------------+--------------+------+-----+---------+-------+
+| empno      | decimal(4,0) | NO   |     | NULL    |       |
+| ename      | varchar(10)  | NO   |     | NULL    |       |
+| job        | varchar(9)   | YES  |     | NULL    |       |
+| mgr        | decimal(4,0) | YES  |     | NULL    |       |  ## primary key removed
+| hiredate   | date         | YES  |     | NULL    |       |
+| sal        | decimal(7,2) | YES  |     | NULL    |       |
+| commission | int          | YES  |     | NULL    |       |
+| deptno     | decimal(2,0) | YES  |     | NULL    |       |
++------------+--------------+------+-----+---------+-------+
+
+-> alter table empl add primary key (empno);
+mysql> desc empl;
+###OUTPUT:::::
++------------+--------------+------+-----+---------+-------+
+| Field      | Type         | Null | Key | Default | Extra |
++------------+--------------+------+-----+---------+-------+
+| empno      | decimal(4,0) | NO   | PRI | NULL    |       |   ## agn primary came
+| ename      | varchar(10)  | NO   |     | NULL    |       |
+| job        | varchar(9)   | YES  |     | NULL    |       |
+| mgr        | decimal(4,0) | YES  |     | NULL    |       |
+| hiredate   | date         | YES  |     | NULL    |       |
+| sal        | decimal(7,2) | YES  |     | NULL    |       |
+| commission | int          | YES  |     | NULL    |       |
+| deptno     | decimal(2,0) | YES  |     | NULL    |       |
++------------+--------------+------+-----+---------+-------+
+
+-> alter table empl change commission comm decimal(7,2);
+mysql> desc empl;
+##OUTPUT:::::
++----------+--------------+------+-----+---------+-------+
+| Field    | Type         | Null | Key | Default | Extra |
++----------+--------------+------+-----+---------+-------+
+| empno    | decimal(4,0) | NO   | PRI | NULL    |       |
+| ename    | varchar(10)  | NO   |     | NULL    |       |
+| job      | varchar(9)   | YES  |     | NULL    |       |
+| mgr      | decimal(4,0) | YES  |     | NULL    |       |
+| hiredate | date         | YES  |     | NULL    |       |
+| sal      | decimal(7,2) | YES  |     | NULL    |       |
+| comm     | decimal(7,2) | YES  |     | NULL    |       |
+| deptno   | decimal(2,0) | YES  |     | NULL    |       |
++----------+--------------+------+-----+---------+-------+
+
