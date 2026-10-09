@@ -37,282 +37,39 @@ VALUES
 # | 6       | Drishyam | Thriller | 2015-07-31  | 38000000       | 110000000    |
 # +---------+----------+----------+-------------+----------------+--------------+--------------+
 
+-> Alter table snday add sports1 varchar(25) First;
+-> select * from snday;
+-> Alter table snday add car after sports1 varchar(25);
+-> Alter table snday add car varchar(25) after sports1;
+-> select * from snday;
+-> alter table snday add bike varchar(20) after businesscost;
+-> select * from snday;
+-> ALTER TABLE snday DROP sports1, DROP bike;
+-> ALTER TABLE snday ADD remarks VARCHAR(25);
+-> select * from snday;
+-> update snday set remarks="good" where movieid=1;
+-> select * from snday;
+-> update snday set remarks="dirty";
+-> UPDATE snday SET productioncost = 550000000 WHERE movieid = 1;
+-> UPDATE snday SET productioncost = 70000000 WHERE movieid = 2;
+-> UPDATE snday SET productioncost = 300000000 WHERE movieid = 3;
+-> UPDATE snday SET productioncost = 55000000 WHERE movieid = 4;
+-> UPDATE snday SET productioncost = 250000000 WHERE movieid = 5;
+-> UPDATE snday SET productioncost = 38000000 WHERE movieid = 6;
 
-# ============================================================
-# 6. ADD sports1 COLUMN
-# ADD adds a new column.
-# FIRST places the column at the beginning.
-# ============================================================
-
-Alter table snday add sports1 varchar(25) First;
-
-# OUTPUT
-# Query OK, 0 rows affected
-
-
-# ============================================================
-# 7. DISPLAY DATA
-# ============================================================
-
-select * from snday;
-
-# OUTPUT
-# sports1 appears as the first column.
-
-
-# ============================================================
-# 8. ADD car COLUMN
-#
-# The original screenshot code was:
-# Alter table snday add car after sports1 varchar(25);
-#
-# This syntax is incorrect.
-# VARCHAR(25) must come immediately after car.
-# AFTER sports1 places car after sports1.
-# ============================================================
-
-Alter table snday add car varchar(25) after sports1;
-
-# OUTPUT
-# Query OK, 0 rows affected
-
-
-# ============================================================
-# 9. DISPLAY DATA
-# ============================================================
-
-select * from snday;
-
-# OUTPUT
-# car appears after sports1.
-
-
-# ============================================================
-# 10. ADD bike COLUMN
-# AFTER businesscost places bike after businesscost.
-# ============================================================
-
-alter table snday add bike varchar(20) after businesscost;
-
-# OUTPUT
-# Query OK, 0 rows affected
-
-
-# ============================================================
-# 11. DISPLAY DATA
-# ============================================================
-
-select * from snday;
-
-# OUTPUT
-# bike appears after businesscost.
-
-
-# ============================================================
-# 12. DROP sports1 AND bike
-# DROP removes the complete column from the table.
-# ============================================================
-
-ALTER TABLE snday DROP sports1, DROP bike;
-
-# OUTPUT
-# Query OK, 0 rows affected
-
-
-# ============================================================
-# 13. ADD remarks COLUMN
-# Adds a new column named remarks.
-# ============================================================
-
-ALTER TABLE snday ADD remarks VARCHAR(25);
-
-# OUTPUT
-# Query OK, 0 rows affected
-
-
-# ============================================================
-# 14. DISPLAY DATA
-# ============================================================
-
-select * from snday;
-
-# OUTPUT
-# remarks column appears in the table.
-
-
-# ============================================================
-# 15. UPDATE ONE RECORD
-# WHERE movieid=1 selects only movieid 1.
-# ============================================================
-
-update snday set remarks="good" where movieid=1;
-
-# OUTPUT
-# Query OK, 1 row affected
-
-
-# ============================================================
-# 16. DISPLAY DATA
-# ============================================================
-
-select * from snday;
-
-# OUTPUT
-# movieid 1 has remarks = good.
-
-
-# ============================================================
-# 17. UPDATE ALL REMARKS
-# No WHERE condition means all records are updated.
-# ============================================================
-
-update snday set remarks="dirty";
-
-# OUTPUT
-# Query OK, 6 rows affected
-
-
-# ============================================================
-# 18. UPDATE PRODUCTION COST - MOVIE 1
-# ============================================================
-
-UPDATE snday SET productioncost = 550000000 WHERE movieid = 1;
-
-# OUTPUT
-# Query OK, 0 rows affected
-
-
-# ============================================================
-# 19. UPDATE PRODUCTION COST - MOVIE 2
-# ============================================================
-
-UPDATE snday SET productioncost = 70000000 WHERE movieid = 2;
-
-# OUTPUT
-# Query OK, 0 rows affected
-
-
-# ============================================================
-# 20. UPDATE PRODUCTION COST - MOVIE 3
-# ============================================================
-
-UPDATE snday SET productioncost = 300000000 WHERE movieid = 3;
-
-# OUTPUT
-# Query OK, 0 rows affected
-
-
-# ============================================================
-# 21. UPDATE PRODUCTION COST - MOVIE 4
-# ============================================================
-
-UPDATE snday SET productioncost = 55000000 WHERE movieid = 4;
-
-# OUTPUT
-# Query OK, 0 rows affected
-
-
-# ============================================================
-# 22. UPDATE PRODUCTION COST - MOVIE 5
-# ============================================================
-
-UPDATE snday SET productioncost = 250000000 WHERE movieid = 5;
-
-# OUTPUT
-# Query OK, 0 rows affected
-
-
-# ============================================================
-# 23. UPDATE PRODUCTION COST - MOVIE 6
-# ============================================================
-
-UPDATE snday SET productioncost = 38000000 WHERE movieid = 6;
-
-# OUTPUT
-# Query OK, 0 rows affected
-
-
-# ============================================================
 # 24. UPDATE RELEASE DATE OF MOVIE 2
 # CURDATE() returns the current date.
-# ============================================================
+-> update snday set releasedate=curdate() where movieid=2;
+-> UPDATE snday SET releasedate=CURDATE()
+   WHERE category='action' OR productioncost=55000000;
+-> UPDATE snday SET releasedate=CURDATE()
+   WHERE category='action';
+-> update snday set moviename='omg' where movieid=1;
 
-update snday set releasedate=curdate() where movieid=2;
-
-# OUTPUT
-# Query OK, 1 row affected
-
-
-# ============================================================
-# 25. DISPLAY DATA
-# ============================================================
-
-select * from snday;
-
-# OUTPUT
-# movieid 2 now has the current date.
-
-
-# ============================================================
-# 26. UPDATE USING OR
-# If either condition is true, the record is updated.
-# ============================================================
-
-UPDATE snday SET releasedate=CURDATE()
-WHERE category='action' OR productioncost=55000000;
-
-# OUTPUT
-# Query OK, 4 rows affected
-
-
-# ============================================================
-# 27. UPDATE ALL ACTION MOVIES
-# Only records with category = action are selected.
-# ============================================================
-
-UPDATE snday SET releasedate=CURDATE()
-WHERE category='action';
-
-# OUTPUT
-# Query OK, 2 rows affected
-
-
-# ============================================================
-# 28. CHANGE MOVIE NAME
-# Changes the name of movieid 1 from RRR to omg.
-# ============================================================
-
-update snday set moviename='omg' where movieid=1;
-
-# OUTPUT
-# Query OK, 1 row affected
-
-
-# ============================================================
-# 29. DISPLAY DATA
-# ============================================================
-
-select * from snday;
-
-# OUTPUT
-# movieid 1 now has moviename = omg.
-
-
-# ============================================================
-# 30. DELETE MOVIEID 3
 # DELETE removes a record from the table.
-# WHERE movieid=3 means only movieid 3 is deleted.
-# ============================================================
-
-DELETE FROM snday WHERE movieid=3;
-
-# OUTPUT
-# Query OK, 1 row affected
+-> DELETE FROM snday WHERE movieid=3;
 
 
-# ============================================================
-# 31. FINAL DISPLAY
-# ============================================================
 
 select * from snday;
 
@@ -473,3 +230,107 @@ mysql> desc empl;
 | deptno   | decimal(2,0) | YES  |     | NULL    |       |
 +----------+--------------+------+-----+---------+-------+
 
+-> delete from empl where empno = 8369;
+ select * from empl;
+## OUTPUT:::::::::
++-------+-----------+-----------+------+------------+---------+---------+--------+
+| empno | ename     | job       | mgr  | hiredate   | sal     | comm    | deptno |
++-------+-----------+-----------+------+------------+---------+---------+--------+
+|  8499 | ANYA      | SALESMAN  | 8698 | 1991-02-20 | 1600.00 |  300.00 |     30 |
+|  8521 | SETH      | SALESMAN  | 8698 | 1991-02-22 | 1250.00 |  500.00 |     30 |
+|  8566 | MAHADEVAN | MANAGER   | 8839 | 1991-04-02 | 2985.00 |    NULL |     20 |
+|  8654 | MOMIN     | SALESMAN  | 8698 | 1991-09-28 | 1250.00 | 1400.00 |     30 |
+|  8698 | BINA      | MANAGER   | 8839 | 1991-05-01 | 2850.00 |    NULL |     30 |
+|  8839 | AMIR      | PRESIDENT | NULL | 1991-11-18 | 5000.00 |    NULL |     10 |
+|  8844 | KULDEEP   | SALESMAN  | 8698 | 1991-09-08 | 1500.00 |    0.00 |     30 |
+|  8882 | SHIAVNSH  | MANAGER   | 8839 | 1991-06-09 | 2450.00 |    NULL |     10 |
+|  8886 | ANOOP     | CLERK     | 8888 | 1993-01-12 | 1100.00 |    NULL |     20 |
+|  8888 | SCOTT     | ANALYST   | 8566 | 1992-12-09 | 3000.00 |    NULL |     20 |
+|  8900 | JATIN     | CLERK     | 8698 | 1991-12-03 |  950.00 |    NULL |     30 |
+|  8902 | FAKIR     | ANALYST   | 8566 | 1991-12-03 | 3000.00 |    NULL |     20 |
+|  8934 | MITA      | CLERK     | 8882 | 1992-01-23 | 1300.00 |    NULL |     10 |
++-------+-----------+-----------+------+------------+---------+---------+--------+
+
+ select * from empl where comm is null;
++-------+-----------+-----------+------+------------+---------+------+--------+
+| empno | ename     | job       | mgr  | hiredate   | sal     | comm | deptno |
++-------+-----------+-----------+------+------------+---------+------+--------+
+|  8566 | MAHADEVAN | MANAGER   | 8839 | 1991-04-02 | 2985.00 | NULL |     20 |
+|  8698 | BINA      | MANAGER   | 8839 | 1991-05-01 | 2850.00 | NULL |     30 |
+|  8839 | AMIR      | PRESIDENT | NULL | 1991-11-18 | 5000.00 | NULL |     10 |
+|  8882 | SHIAVNSH  | MANAGER   | 8839 | 1991-06-09 | 2450.00 | NULL |     10 |
+|  8886 | ANOOP     | CLERK     | 8888 | 1993-01-12 | 1100.00 | NULL |     20 |
+|  8888 | SCOTT     | ANALYST   | 8566 | 1992-12-09 | 3000.00 | NULL |     20 |
+|  8900 | JATIN     | CLERK     | 8698 | 1991-12-03 |  950.00 | NULL |     30 |
+|  8902 | FAKIR     | ANALYST   | 8566 | 1991-12-03 | 3000.00 | NULL |     20 |
+|  8934 | MITA      | CLERK     | 8882 | 1992-01-23 | 1300.00 | NULL |     10 |
++-------+-----------+-----------+------+------------+---------+------+--------+
+
+ select empno,ename,sal from empl;
+## OUTPUT;;
++-------+-----------+---------+
+| empno | ename     | sal     |
++-------+-----------+---------+
+|  8499 | ANYA      | 1600.00 |
+|  8521 | SETH      | 1250.00 |
+|  8566 | MAHADEVAN | 2985.00 |
+|  8654 | MOMIN     | 1250.00 |
+|  8698 | BINA      | 2850.00 |
+|  8839 | AMIR      | 5000.00 |
+|  8844 | KULDEEP   | 1500.00 |
+|  8882 | SHIAVNSH  | 2450.00 |
+|  8886 | ANOOP     | 1100.00 |
+|  8888 | SCOTT     | 3000.00 |
+|  8900 | JATIN     |  950.00 |
+|  8902 | FAKIR     | 3000.00 |
+|  8934 | MITA      | 1300.00 |
++-------+-----------+---------+
+
+select * from empl where sal between 2000 and 5000;
+## OUTPUT::::::
++-------+-----------+-----------+------+------------+---------+------+--------+
+| empno | ename     | job       | mgr  | hiredate   | sal     | comm | deptno |
++-------+-----------+-----------+------+------------+---------+------+--------+
+|  8566 | MAHADEVAN | MANAGER   | 8839 | 1991-04-02 | 2985.00 | NULL |     20 |
+|  8698 | BINA      | MANAGER   | 8839 | 1991-05-01 | 2850.00 | NULL |     30 |       ########### This will display ,, whose salary is between 2000 to 5000,,,, here between clause specify the range..  i will not include 2000 n 5000
+|  8839 | AMIR      | PRESIDENT | NULL | 1991-11-18 | 5000.00 | NULL |     10 |
+|  8882 | SHIAVNSH  | MANAGER   | 8839 | 1991-06-09 | 2450.00 | NULL |     10 |
+|  8888 | SCOTT     | ANALYST   | 8566 | 1992-12-09 | 3000.00 | NULL |     20 |
+|  8902 | FAKIR     | ANALYST   | 8566 | 1991-12-03 | 3000.00 | NULL |     20 |
++-------+-----------+-----------+------+------------+---------+------+--------+
+
+ select * from empl where sal>=2000 and sal<5000;
++-------+-----------+---------+------+------------+---------+------+--------+
+| empno | ename     | job     | mgr  | hiredate   | sal     | comm | deptno |
++-------+-----------+---------+------+------------+---------+------+--------+
+|  8566 | MAHADEVAN | MANAGER | 8839 | 1991-04-02 | 2985.00 | NULL |     20 |  #### we can also write like this ,, same code..
+|  8698 | BINA      | MANAGER | 8839 | 1991-05-01 | 2850.00 | NULL |     30 |
+|  8882 | SHIAVNSH  | MANAGER | 8839 | 1991-06-09 | 2450.00 | NULL |     10 |
+|  8888 | SCOTT     | ANALYST | 8566 | 1992-12-09 | 3000.00 | NULL |     20 |
+|  8902 | FAKIR     | ANALYST | 8566 | 1991-12-03 | 3000.00 | NULL |     20 |
++-------+-----------+---------+------+------------+---------+------+--------+
+
+-> select ename, sal, job from empl where job in ('clerk', 'manager', 'president');
++-----------+---------+-----------+
+| ename     | sal     | job       |
++-----------+---------+-----------+
+| MAHADEVAN | 2985.00 | MANAGER   |
+| BINA      | 2850.00 | MANAGER   |
+| AMIR      | 5000.00 | PRESIDENT |
+| SHIAVNSH  | 2450.00 | MANAGER   |
+| ANOOP     | 1100.00 | CLERK     |
+| JATIN     |  950.00 | CLERK     |
+| MITA      | 1300.00 | CLERK     |
++-----------+---------+-----------+
+
+-> select ename, sal, job from empl where job not in ('clerk', 'manager', 'president');
++---------+---------+----------+
+| ename   | sal     | job      |
++---------+---------+----------+
+| ANYA    | 1600.00 | SALESMAN |
+| SETH    | 1250.00 | SALESMAN |
+| MOMIN   | 1250.00 | SALESMAN |
+| KULDEEP | 1500.00 | SALESMAN |
+| SCOTT   | 3000.00 | ANALYST  |
+| FAKIR   | 3000.00 | ANALYST  |
++---------+---------+----------+
