@@ -464,4 +464,193 @@ select * from empl where sal between 2000 and 5000;
 |        1365.0000 |
 +------------------+
 
-select sal
+
+-> selectsal+sal.05 as 'increased salary' from empl where job='clerk';
++------------------+
+| increased salary |
++------------------+
+| 840.0000 |
+| 1155.0000 |
+| 997.5000 |
+| 1365.0000 |
++------------------+
+-> select ename, 'is a ', job,'and getting yearly salary of rs', sal12 from empl;
+
++-----------+-------+-----------+---------------------------------+----------+
+| ename | is a | job | and getting yearly salary of rs | sal12 |
++-----------+-------+-----------+---------------------------------+----------+
+| SMITH | is a | CLERK | and getting yearly salary of rs | 9600.00 |
+| ANYA | is a | SALESMAN | and getting yearly salary of rs | 19200.00 |
+| SETH | is a | SALESMAN | and getting yearly salary of rs | 15000.00 |
+| MAHADEVAN | is a | MANAGER | and getting yearly salary of rs | 35820.00 |
+| MOMIN | is a | SALESMAN | and getting yearly salary of rs | 15000.00 |
+| BINA | is a | MANAGER | and getting yearly salary of rs | 34200.00 |
+| AMIR | is a | PRESIDENT | and getting yearly salary of rs | 60000.00 |
+| KULDEEP | is a | SALESMAN | and getting yearly salary of rs | 18000.00 |
+| SHIAVNSH | is a | MANAGER | and getting yearly salary of rs | 29400.00 |
+| ANOOP | is a | CLERK | and getting yearly salary of rs | 13200.00 |
+| SCOTT | is a | ANALYST | and getting yearly salary of rs | 36000.00 |
+| JATIN | is a | CLERK | and getting yearly salary of rs | 11400.00 |
+| FAKIR | is a | ANALYST | and getting yearly salary of rs | 36000.00 |
+| MITA | is a | CLERK | and getting yearly salary of rs | 15600.00 |
++-----------+-------+-----------+---------------------------------+----------+
+
+-> selectfrom empl where job='salesman' order by ename desc;  
+
++-------+---------+----------+------+------------+---------+---------+--------+
+| empno | ename | job | mgr | hiredate | sal | comm | deptno |
++-------+---------+----------+------+------------+---------+---------+--------+
+| 8521 | SETH | SALESMAN | 8698 | 1991-02-22 | 1250.00 | 500.00 | 30 |
+| 8654 | MOMIN | SALESMAN | 8698 | 1991-09-28 | 1250.00 | 1400.00 | 30 |
+| 8844 | KULDEEP | SALESMAN | 8698 | 1991-09-08 | 1500.00 | 0.00 | 30 |
+| 8499 | ANYA | SALESMAN | 8698 | 1991-02-20 | 1600.00 | 300.00 | 30 |
++-------+---------+----------+------+------------+---------+---------+--------+
+
+-> select * from empl order by job, sal desc;
++-------+-----------+-----------+------+------------+---------+---------+--------+
+| empno | ename     | job       | mgr  | hiredate   | sal     | comm    | deptno |
++-------+-----------+-----------+------+------------+---------+---------+--------+
+|  8888 | SCOTT     | ANALYST   | 8566 | 1992-12-09 | 3000.00 |    NULL |     20 |
+|  8902 | FAKIR     | ANALYST   | 8566 | 1991-12-03 | 3000.00 |    NULL |     20 |
+|  8934 | MITA      | CLERK     | 8882 | 1992-01-23 | 1300.00 |    NULL |     10 |
+|  8886 | ANOOP     | CLERK     | 8888 | 1993-01-12 | 1100.00 |    NULL |     20 |
+|  8900 | JATIN     | CLERK     | 8698 | 1991-12-03 |  950.00 |    NULL |     30 |
+|  8369 | SMITH     | CLERK     | 8902 | 1990-12-18 |  800.00 |    NULL |     20 |         ######## job ASC → Jobs are arranged in ascending alphabetical order (A–Z).
+|  8566 | MAHADEVAN | MANAGER   | 8839 | 1991-04-02 | 2985.00 |    NULL |     20 |         ######## sal DESC → Salaries are arranged in descending order (highest to lowest) within each job group..
+|  8698 | BINA      | MANAGER   | 8839 | 1991-05-01 | 2850.00 |    NULL |     30 |
+|  8882 | SHIAVNSH  | MANAGER   | 8839 | 1991-06-09 | 2450.00 |    NULL |     10 |
+|  8839 | AMIR      | PRESIDENT | NULL | 1991-11-18 | 5000.00 |    NULL |     10 |
+|  8499 | ANYA      | SALESMAN  | 8698 | 1991-02-20 | 1600.00 |  300.00 |     30 |
+|  8844 | KULDEEP   | SALESMAN  | 8698 | 1991-09-08 | 1500.00 |    0.00 |     30 |
+|  8521 | SETH      | SALESMAN  | 8698 | 1991-02-22 | 1250.00 |  500.00 |     30 |
+|  8654 | MOMIN     | SALESMAN  | 8698 | 1991-09-28 | 1250.00 | 1400.00 |     30 |
++-------+-----------+-----------+------+------------+---------+---------+--------+
+
+-> select distinct job from empl;
++-----------+
+| job       |
++-----------+
+| CLERK     |
+| SALESMAN  |
+| MANAGER   |  #####  Display all the different job titles from the empl table. We use DISTINCT to display each job title only once and remove duplicate values from the output.
+| PRESIDENT |
+| ANALYST   |
++-----------+
+
+-> select count(*) from empl;
++----------+
+| count(*) |
++----------+                  Count the total number of records (employees) present in the empl table. We use COUNT(*) to count all rows in the table, regardless of whether some column values are NULL.
+|       14 |                    Why do we use COUNT(*)?
++----------+                    COUNT() is an aggregate function used to count rows or values.
+
+
+select count(distinct job) from empl;         #######Count the total number of different job types in the empl table. We use COUNT(DISTINCT job) to count only unique job titles, ignoring repeated job titles.
++---------------------+                       ##DISTINCT removes duplicate job titles before counting them.
+| count(distinct job) |                       ## The output is 5, which means there are 5 unique job types in the empl table.
++---------------------+                               
+|                   5 |
++---------------------+  
+
+
+
+ INSERT INTO mndy
+    -> VALUES
+    -> (1,'RRR','Action','2022-03-25',550000000,1200000000),
+    -> (2,'Dangal','Sports','2016-12-23',70000000,2000000000),
+    -> (3,'Jawan','Action','2023-09-07',300000000,1100000000),
+    -> (4,'3 Idiots','Comedy','2009-12-25',55000000,460000000),
+    -> (5,'Pathaan','Action','2023-01-25',250000000,1050000000),
+    -> (6,'Drishyam','Thriller','2015-07-31',38000000,110000000);
+
+ select * from mndy;
++---------+-----------+----------+-------------+----------------+--------------+
+| movieid | moviename | category | releasedate | productioncost | businesscost |
++---------+-----------+----------+-------------+----------------+--------------+
+|       1 | RRR       | Action   | 2022-03-25  |      550000000 |   1200000000 |
+|       2 | Dangal    | Sports   | 2016-12-23  |       70000000 |   2000000000 |
+|       3 | Jawan     | Action   | 2023-09-07  |      300000000 |   1100000000 |
+|       4 | 3 Idiots  | Comedy   | 2009-12-25  |       55000000 |    460000000 |
+|       5 | Pathaan   | Action   | 2023-01-25  |      250000000 |   1050000000 |
+|       6 | Drishyam  | Thriller | 2015-07-31  |       38000000 |    110000000 |
++---------+-----------+----------+-------------+----------------+--------------+
+
+QUESTION:::: list busineed dn by the movie showing only moviID moviename n businesscost
+-> SELECT movieid, moviename, businesscost FROM mndy; 
+
++---------+-----------+--------------+ 
+| movieid | moviename | businesscost |
++---------+-----------+--------------+
+|       1 | RRR       |   1200000000 |
+|       2 | Dangal    |   2000000000 |
+|       3 | Jawan     |   1100000000 |
+|       4 | 3 Idiots  |    460000000 |
+|       5 | Pathaan   |   1050000000 |
+|       6 | Drishyam  |    110000000 |
++---------+-----------+--------------+
+
+QUESTION:: find the net profit of each movie showing its ID ,NAME and net profit;;
+-> SELECT movieid, moviename, (businesscost - productioncost) AS netprofit from mndy;
++---------+-----------+------------+
+| movieid | moviename | netprofit  |
++---------+-----------+------------+
+|       1 | RRR       |  650000000 |
+|       2 | Dangal    | 1930000000 |
+|       3 | Jawan     |  800000000 |
+|       4 | 3 Idiots  |  405000000 |QUESION
+|       5 | Pathaan   |  800000000 |
+|       6 | Drishyam  |   72000000 |
+
+QUESTION:::: list different categories of movies,,
+-> SELECT DISTINCT category FROM mndy;
++-----------+
+| category  |
++-----------+
+| Action    |
+| Sports    |
+| Comedy    |
+| Thriller  |
++-----------+
+
+QUESTION::::  List all movies with productioncost greater than 80,000 and less than 1,25,000 showing ID, name and productioncost
+-> SELECT movieid, moviename, productioncost FROM mndy WHERE productioncost > 80000 AND productioncost < 125000;
+
+
+QUESTION:::: list all movies which fall in the category of comedy and action.
+-> SELECT * FROM mndy WHERE category IN ('Comedy', 'Action');
+
+secnd way
+-> SELECT * FROM mndy WHERE category = 'Comedy' OR category = 'Action';
+
+QUESTION:::: list the movies which have not been yet released
+-> SELECT * FROM mndy WHERE releasedate IS NULL;
+
+ ###########disply dteail of all such employee which hired in 1991 based on this tbble..
++-------+-----------+-----------+------+------------+---------+---------+--------+
+| empno | ename     | job       | mgr  | hiredate   | sal     | comm    | deptno |
++-------+-----------+-----------+------+------------+---------+---------+--------+
+|  8369 | SMITH     | CLERK     | 8902 | 1990-12-18 |  800.00 |    NULL |     20 |
+|  8499 | ANYA      | SALESMAN  | 8698 | 1991-02-20 | 1600.00 |  300.00 |     30 |
+|  8521 | SETH      | SALESMAN  | 8698 | 1991-02-22 | 1250.00 |  500.00 |     30 |
+|  8566 | MAHADEVAN | MANAGER   | 8839 | 1991-04-02 | 2985.00 |    NULL |     20 |
+|  8654 | MOMIN     | SALESMAN  | 8698 | 1991-09-28 | 1250.00 | 1400.00 |     30 |
+|  8698 | BINA      | MANAGER   | 8839 | 1991-05-01 | 2850.00 |    NULL |     30 |
+|  8839 | AMIR      | PRESIDENT | NULL | 1991-11-18 | 5000.00 |    NULL |     10 |
+|  8844 | KULDEEP   | SALESMAN  | 8698 | 1991-09-08 | 1500.00 |    0.00 |     30 |
+|  8882 | SHIAVNSH  | MANAGER   | 8839 | 1991-06-09 | 2450.00 |    NULL |     10 |
+|  8886 | ANOOP     | CLERK     | 8888 | 1993-01-12 | 1100.00 |    NULL |     20 |
+|  8888 | SCOTT     | ANALYST   | 8566 | 1992-12-09 | 3000.00 |    NULL |     20 |
+|  8900 | JATIN     | CLERK     | 8698 | 1991-12-03 |  950.00 |    NULL |     30 |
+|  8902 | FAKIR     | ANALYST   | 8566 | 1991-12-03 | 3000.00 |    NULL |     20 |
+|  8934 | MITA      | CLERK     | 8882 | 1992-01-23 | 1300.00 |    NULL |     10 |
+
+-> SELECT * FROM empl WHERE hiredate BETWEEN '1991-01-01' AND '1991-12-31';
+
+QUESTION+:: display detail of employer which r hired after 1992;
+SELECT * FROM empl WHERE hiredate > '1992-12-31';
+
+QUESTION:: display details of the employer tht r hired before 1991..
+-> SELECT * FROM empl WHERE hiredate < '1991-01-01';
+
+
+
