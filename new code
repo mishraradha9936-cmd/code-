@@ -653,4 +653,79 @@ QUESTION:: display details of the employer tht r hired before 1991..
 -> SELECT * FROM empl WHERE hiredate < '1991-01-01';
 
 
+select count(*), job from empl group by job;
+###OUTPUT:
++----------+-----------+
+| count(*) | job       |
++----------+-----------+
+|        4 | CLERK     |
+|        4 | SALESMAN  |      ##### GROUP BY job groups employees who have the same job together.  For example, all employees whose job is CLERK are placed in one group.
+|        3 | MANAGER   |
+|        1 | PRESIDENT |
+|        2 | ANALYST   |
++----------+-----------+     
 
+# To display the job, average salary, and total salary for each job category.
+-> SELECT job, AVG(sal), SUM(sal) FROM empl GROUP BY job;
+######## OUTPUT::::
++-----------+-------------+----------+
+| job       | AVG(sal)    | SUM(sal) |
++-----------+-------------+----------+
+| CLERK     | 1037.500000 |  4150.00 |
+| SALESMAN  | 1400.000000 |  5600.00 |
+| MANAGER   | 2761.666667 |  8285.00 |
+| PRESIDENT | 5000.000000 |  5000.00 |
+| ANALYST   | 3000.000000 |  6000.00 |
++-----------+-------------+----------+
+
+-> select job,avg(sal),sum(sal) from empl group by job having job='salesman';
+#### OUTPUT::::: 
++----------+-------------+----------+
+| job      | avg(sal)    | sum(sal) |
++----------+-------------+----------+
+| SALESMAN | 1400.000000 |  5600.00 |
++----------+-------------+----------+
+
+-> select sum(sal), year(hiredate) from empl group by year(hiredate);
++----------+----------------+
+| sum(sal) | year(hiredate) |
++----------+----------------+
+|   800.00 |           1990 |
+| 22835.00 |           1991 |
+|  1100.00 |           1993 |
+|  4300.00 |           1992 |
++----------+----------------+
+
+select sum(sal),count(*), dayname(hiredate) from empl group by dayname(hiredate);
++----------+----------+-------------------+
+| sum(sal) | count(*) | dayname(hiredate) |
++----------+----------+-------------------+
+|  8835.00 |        5 | Tuesday           |
+|  7450.00 |        3 | Wednesday         |
+|  1250.00 |        1 | Friday            |
+|  1250.00 |        1 | Saturday          |
+|  5000.00 |        1 | Monday            |
+|  3950.00 |        2 | Sunday            |
+|  1300.00 |        1 | Thursday          |
++----------+----------+-------------------+
+
+
+->select dayofweek(hiredate),dayname(hiredate) from empl;
++---------------------+-------------------+
+| dayofweek(hiredate) | dayname(hiredate) |
++---------------------+-------------------+
+|                   3 | Tuesday           |
+|                   4 | Wednesday         |
+|                   6 | Friday            |
+|                   3 | Tuesday           |
+|                   7 | Saturday          |
+|                   4 | Wednesday         |
+|                   2 | Monday            |
+|                   1 | Sunday            |
+|                   1 | Sunday            |
+|                   3 | Tuesday           |
+|                   4 | Wednesday         |
+|                   3 | Tuesday           |
+|                   3 | Tuesday           |
+|                   5 | Thursday          |
++---------------------+-------------------+
