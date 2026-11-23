@@ -589,7 +589,7 @@ QUESTION:::: list busineed dn by the movie showing only moviID moviename n busin
 |       6 | Drishyam  |    110000000 |
 +---------+-----------+--------------+
 
-QUESTION:: find the net profit of each movie showing its ID ,NAME and net profit;;
+QUESTION:: find the net profit of each movie showing its ID ,NAME and net profit;;   
 -> SELECT movieid, moviename, (businesscost - productioncost) AS netprofit from mndy;
 +---------+-----------+------------+
 | movieid | moviename | netprofit  |
@@ -729,3 +729,35 @@ select sum(sal),count(*), dayname(hiredate) from empl group by dayname(hiredate)
 |                   3 | Tuesday           |
 |                   5 | Thursday          |
 +---------------------+-------------------+
+
+
+QUestion:::: Write a query to display the no of student in each dept.
+-> select deptno, count(*) from empl group by deptno;
+OUTPUT:::::::::::
++--------+----------+
+| deptno | count(*) |
++--------+----------+
+|     20 |        5 |
+|     30 |        6 |
+|     10 |        3 |
++--------+----------+
+
+
+QUestion:::: Display the department number and the number of employees in each department whose salary is greater than 2000
+->  select deptno,count(*) from empl where sal>2000 group by deptno;
+OUTPUT:::::::::::
++--------+----------+
+| deptno | count(*) |
++--------+----------+
+|     20 |        3 |
+|     30 |        1 |
+|     10 |        2 |
++--------+----------+
+
+Question:::: display avrg salary of all employee;;
+select avg(sal) from empl;
+Output::::::::::::
++-------------+
+| avg(sal)    |
++-------------+
+| 2073.928571 |
