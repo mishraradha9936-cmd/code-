@@ -761,3 +761,179 @@ Output::::::::::::
 | avg(sal)    |
 +-------------+
 | 2073.928571 |
+
+ CREATE TABLE STUDENT_casestudy
+    ->
+    -> (
+    ->
+    -> AdmNo INT PRIMARY KEY,
+    ->
+    -> Name VARCHAR(30),
+    ->
+    -> Class INT,
+    ->
+    -> Section CHAR(1),
+    ->
+    -> Gender CHAR(1),
+    ->
+    -> City VARCHAR(20),
+    ->
+    -> Stream VARCHAR(15),
+    ->
+    -> Marks FLOAT,
+    ->
+    -> Fees INT,
+    ->
+    -> Sports VARCHAR(20)
+    ->
+    -> );
+INSERT INTO STUDENT_casestudy VALUES
+    ->
+    -> (101,'Aarav',12,'A','M','Delhi','Science',92,15000,'Cricket'),
+    ->
+    -> (102,'Ananya',12,'A','F','Noida','Commerce',85,12000,'Badminton'),
+    ->
+    -> (103,'Rohan',11,'B','M','Delhi','Science',78,15000,'Football'),
+    ->
+    -> (104,'Meera',12,'B','F','Agra','Humanities',95,10000,'Basketball'),
+    ->
+    -> (105,'Kabir',11,'A','M','Noida','Commerce',67,12000,'Cricket'),
+    ->
+    -> (106,'Ishita',12,'A','F','Delhi','Science',88,15000,'Chess'),
+    ->
+    -> (107,'Arjun',11,'B','M','Agra','Science',91,15000,'Football'),
+    ->
+    -> (108,'Diya',12,'B','F','Noida','Commerce',73,12000,'Badminton'),
+    ->
+    -> (109,'Vivaan',11,'A','M','Delhi','Humanities',82,10000,'Cricket'),
+    ->
+    -> (110,'Sanya',12,'A','F','Agra','Science',96,15000,'Basketball'),
+    ->
+    -> (111,'Aditya',11,'B','M','Noida','Commerce',58,12000,'Football'),
+    ->
+    -> (112,'Tanya',12,'B','F','Delhi','Humanities',89,10000,'Chess'),
+    ->
+    -> (113,'Rahul',11,'A','M','Agra','Science',84,15000,'Cricket'),
+    ->
+    -> (114,'Priya',12,'A','F','Noida','Commerce',93,12000,'Badminton'),
+    ->
+    -> (115,'Kunal',11,'B','M','Delhi','Humanities',71,10000,'Football');
+
+select * from student_casestudy;
++-------+--------+-------+---------+--------+-------+------------+-------+-------+------------+
+| AdmNo | Name   | Class | Section | Gender | City  | Stream     | Marks | Fees  | Sports     |
++-------+--------+-------+---------+--------+-------+------------+-------+-------+------------+
+|   101 | Aarav  |    12 | A       | M      | Delhi | Science    |    92 | 15000 | Cricket    |
+|   102 | Ananya |    12 | A       | F      | Noida | Commerce   |    85 | 12000 | Badminton  |
+|   103 | Rohan  |    11 | B       | M      | Delhi | Science    |    78 | 15000 | Football   |
+|   104 | Meera  |    12 | B       | F      | Agra  | Humanities |    95 | 10000 | Basketball |
+|   105 | Kabir  |    11 | A       | M      | Noida | Commerce   |    67 | 12000 | Cricket    |
+|   106 | Ishita |    12 | A       | F      | Delhi | Science    |    88 | 15000 | Chess      |
+|   107 | Arjun  |    11 | B       | M      | Agra  | Science    |    91 | 15000 | Football   |
+|   108 | Diya   |    12 | B       | F      | Noida | Commerce   |    73 | 12000 | Badminton  |
+|   109 | Vivaan |    11 | A       | M      | Delhi | Humanities |    82 | 10000 | Cricket    |
+|   110 | Sanya  |    12 | A       | F      | Agra  | Science    |    96 | 15000 | Basketball |
+|   111 | Aditya |    11 | B       | M      | Noida | Commerce   |    58 | 12000 | Football   |
+|   112 | Tanya  |    12 | B       | F      | Delhi | Humanities |    89 | 10000 | Chess      |
+|   113 | Rahul  |    11 | A       | M      | Agra  | Science    |    84 | 15000 | Cricket    |
+|   114 | Priya  |    12 | A       | F      | Noida | Commerce   |    93 | 12000 | Badminton  |
+|   115 | Kunal  |    11 | B       | M      | Delhi | Humanities |    71 | 10000 | Football   |
++-------+--------+-------+---------+--------+-------+------------+-------+-------+------------+
+
+alter table student_casestudy add email varchar(40);
+
+
+mysql> select * from student_casestudy;
++-------+--------+-------+---------+--------+-------+------------+-------+-------+------------+-------+
+| AdmNo | Name   | Class | Section | Gender | City  | Stream     | Marks | Fees  | Sports     | email |
++-------+--------+-------+---------+--------+-------+------------+-------+-------+------------+-------+
+|   101 | Aarav  |    12 | A       | M      | Delhi | Science    |    92 | 15000 | Cricket    | NULL  |
+|   102 | Ananya |    12 | A       | F      | Noida | Commerce   |    85 | 12000 | Badminton  | NULL  |
+|   103 | Rohan  |    11 | B       | M      | Delhi | Science    |    78 | 15000 | Football   | NULL  |
+|   104 | Meera  |    12 | B       | F      | Agra  | Humanities |    95 | 10000 | Basketball | NULL  |
+|   105 | Kabir  |    11 | A       | M      | Noida | Commerce   |    67 | 12000 | Cricket    | NULL  |
+|   106 | Ishita |    12 | A       | F      | Delhi | Science    |    88 | 15000 | Chess      | NULL  |
+|   107 | Arjun  |    11 | B       | M      | Agra  | Science    |    91 | 15000 | Football   | NULL  |
+|   108 | Diya   |    12 | B       | F      | Noida | Commerce   |    73 | 12000 | Badminton  | NULL  |
+|   109 | Vivaan |    11 | A       | M      | Delhi | Humanities |    82 | 10000 | Cricket    | NULL  |
+|   110 | Sanya  |    12 | A       | F      | Agra  | Science    |    96 | 15000 | Basketball | NULL  |
+|   111 | Aditya |    11 | B       | M      | Noida | Commerce   |    58 | 12000 | Football   | NULL  |
+|   112 | Tanya  |    12 | B       | F      | Delhi | Humanities |    89 | 10000 | Chess      | NULL  |
+|   113 | Rahul  |    11 | A       | M      | Agra  | Science    |    84 | 15000 | Cricket    | NULL  |
+|   114 | Priya  |    12 | A       | F      | Noida | Commerce   |    93 | 12000 | Badminton  | NULL  |
+|   115 | Kunal  |    11 | B       | M      | Delhi | Humanities |    71 | 10000 | Football   | NULL  |
++-------+--------+-------+---------+--------+-------+------------+-------+-------+------------+-------+
+
+ update student_casestudy
+    -> set email="arav@vidyagyan.in"
+    -> where admno=101;
+
+
+mysql> select * from student_casestudy;
++-------+--------+-------+---------+--------+-------+------------+-------+-------+------------+-------------------+
+| AdmNo | Name   | Class | Section | Gender | City  | Stream     | Marks | Fees  | Sports     | email             |
++-------+--------+-------+---------+--------+-------+------------+-------+-------+------------+-------------------+
+|   101 | Aarav  |    12 | A       | M      | Delhi | Science    |    92 | 15000 | Cricket    | arav@vidyagyan.in |
+|   102 | Ananya |    12 | A       | F      | Noida | Commerce   |    85 | 12000 | Badminton  | NULL              |
+|   103 | Rohan  |    11 | B       | M      | Delhi | Science    |    78 | 15000 | Football   | NULL              |
+|   104 | Meera  |    12 | B       | F      | Agra  | Humanities |    95 | 10000 | Basketball | NULL              |
+|   105 | Kabir  |    11 | A       | M      | Noida | Commerce   |    67 | 12000 | Cricket    | NULL              |
+|   106 | Ishita |    12 | A       | F      | Delhi | Science    |    88 | 15000 | Chess      | NULL              |
+|   107 | Arjun  |    11 | B       | M      | Agra  | Science    |    91 | 15000 | Football   | NULL              |
+|   108 | Diya   |    12 | B       | F      | Noida | Commerce   |    73 | 12000 | Badminton  | NULL              |
+|   109 | Vivaan |    11 | A       | M      | Delhi | Humanities |    82 | 10000 | Cricket    | NULL              |
+|   110 | Sanya  |    12 | A       | F      | Agra  | Science    |    96 | 15000 | Basketball | NULL              |
+|   111 | Aditya |    11 | B       | M      | Noida | Commerce   |    58 | 12000 | Football   | NULL              |
+|   112 | Tanya  |    12 | B       | F      | Delhi | Humanities |    89 | 10000 | Chess      | NULL              |
+|   113 | Rahul  |    11 | A       | M      | Agra  | Science    |    84 | 15000 | Cricket    | NULL              |
+|   114 | Priya  |    12 | A       | F      | Noida | Commerce   |    93 | 12000 | Badminton  | NULL              |
+|   115 | Kunal  |    11 | B       | M      | Delhi | Humanities |    71 | 10000 | Football   | NULL              |
++-------+--------+-------+---------+--------+-------+------------+-------+-------+------------+-------------------+
+
+
+update student_casestudy set fees=fees+1000 where stream="commerce";
+
+mysql> select * from student_casestudy;
++-------+--------+-------+---------+--------+-------+------------+-------+-------+------------+-------------------+
+| AdmNo | Name   | Class | Section | Gender | City  | Stream     | Marks | Fees  | Sports     | email             |
++-------+--------+-------+---------+--------+-------+------------+-------+-------+------------+-------------------+
+|   101 | Aarav  |    12 | A       | M      | Delhi | Science    |    92 | 15000 | Cricket    | arav@vidyagyan.in |
+|   102 | Ananya |    12 | A       | F      | Noida | Commerce   |    85 | 13000 | Badminton  | NULL              |
+|   103 | Rohan  |    11 | B       | M      | Delhi | Science    |    78 | 15000 | Football   | NULL              |
+|   104 | Meera  |    12 | B       | F      | Agra  | Humanities |    95 | 10000 | Basketball | NULL              |
+|   105 | Kabir  |    11 | A       | M      | Noida | Commerce   |    67 | 13000 | Cricket    | NULL              |
+|   106 | Ishita |    12 | A       | F      | Delhi | Science    |    88 | 15000 | Chess      | NULL              |
+|   107 | Arjun  |    11 | B       | M      | Agra  | Science    |    91 | 15000 | Football   | NULL              |
+|   108 | Diya   |    12 | B       | F      | Noida | Commerce   |    73 | 13000 | Badminton  | NULL              |
+|   109 | Vivaan |    11 | A       | M      | Delhi | Humanities |    82 | 10000 | Cricket    | NULL              |
+|   110 | Sanya  |    12 | A       | F      | Agra  | Science    |    96 | 15000 | Basketball | NULL              |
+|   111 | Aditya |    11 | B       | M      | Noida | Commerce   |    58 | 13000 | Football   | NULL              |
+|   112 | Tanya  |    12 | B       | F      | Delhi | Humanities |    89 | 10000 | Chess      | NULL              |
+|   113 | Rahul  |    11 | A       | M      | Agra  | Science    |    84 | 15000 | Cricket    | NULL              |
+|   114 | Priya  |    12 | A       | F      | Noida | Commerce   |    93 | 13000 | Badminton  | NULL              |
+|   115 | Kunal  |    11 | B       | M      | Delhi | Humanities |    71 | 10000 | Football   | NULL              |
++-------+--------+-------+---------+--------+-------+------------+-------+-------+------------+-------------------+
+
+ update student_casestudy set fees=fees+1000 where stream="commerce";
+mysql> select*from student_casestudy;
++-------+--------+-------+---------+--------+-------+------------+-------+-------+--------+-------------------+
+| AdmNo | Name   | Class | Section | Gender | City  | Stream     | Marks | Fees  | Sports | email             |
++-------+--------+-------+---------+--------+-------+------------+-------+-------+--------+-------------------+
+|   101 | Aarav  |    12 | A       | M      | Delhi | Science    |    92 | 15000 | hockey | arav@vidyagyan.in |
+|   102 | Ananya |    12 | A       | F      | Noida | Commerce   |    85 | 15000 | hockey | NULL              |
+|   103 | Rohan  |    11 | B       | M      | Delhi | Science    |    78 | 15000 | hockey | NULL              |
+|   104 | Meera  |    12 | B       | F      | Agra  | Humanities |    95 | 10000 | hockey | NULL              |
+|   105 | Kabir  |    11 | A       | M      | Noida | Commerce   |    67 | 15000 | hockey | NULL              |
+|   106 | Ishita |    12 | A       | F      | Delhi | Science    |    88 | 15000 | hockey | NULL              |
+|   107 | Arjun  |    11 | B       | M      | Agra  | Science    |    91 | 15000 | hockey | NULL              |
+|   108 | Diya   |    12 | B       | F      | Noida | Commerce   |    73 | 15000 | hockey | NULL              |
+|   109 | Vivaan |    11 | A       | M      | Delhi | Humanities |    82 | 10000 | hockey | NULL              |
+|   110 | Sanya  |    12 | A       | F      | Agra  | Science    |    96 | 15000 | hockey | NULL              |
+|   111 | Aditya |    11 | B       | M      | Noida | Commerce   |    58 | 15000 | hockey | NULL              |
+|   112 | Tanya  |    12 | B       | F      | Delhi | Humanities |    89 | 10000 | hockey | NULL              |
+|   113 | Rahul  |    11 | A       | M      | Agra  | Science    |    84 | 15000 | hockey | NULL              |
+|   114 | Priya  |    12 | A       | F      | Noida | Commerce   |    93 | 15000 | hockey | NULL              |
+|   115 | Kunal  |    11 | B       | M      | Delhi | Humanities |    71 | 10000 | hockey | NULL              |
+
+-> alter table student_casestudy change sports activity varchar(28);
+
