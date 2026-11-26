@@ -910,7 +910,7 @@ mysql> select * from student_casestudy;
 |   111 | Aditya |    11 | B       | M      | Noida | Commerce   |    58 | 13000 | Football   | NULL              |
 |   112 | Tanya  |    12 | B       | F      | Delhi | Humanities |    89 | 10000 | Chess      | NULL              |
 |   113 | Rahul  |    11 | A       | M      | Agra  | Science    |    84 | 15000 | Cricket    | NULL              |
-|   114 | Priya  |    12 | A       | F      | Noida | Commerce   |    93 | 13000 | Badminton  | NULL              |
+|   114 | Priya  |    12 | A       | F      | Noida | Commerce   |    93 | 13000 | Badminton  | NULL              |        
 |   115 | Kunal  |    11 | B       | M      | Delhi | Humanities |    71 | 10000 | Football   | NULL              |
 +-------+--------+-------+---------+--------+-------+------------+-------+-------+------------+-------------------+
 
@@ -920,12 +920,12 @@ mysql> select*from student_casestudy;
 | AdmNo | Name   | Class | Section | Gender | City  | Stream     | Marks | Fees  | Sports | email             |
 +-------+--------+-------+---------+--------+-------+------------+-------+-------+--------+-------------------+
 |   101 | Aarav  |    12 | A       | M      | Delhi | Science    |    92 | 15000 | hockey | arav@vidyagyan.in |
-|   102 | Ananya |    12 | A       | F      | Noida | Commerce   |    85 | 15000 | hockey | NULL              |
+|   102 | Ananya |    12 | A       | F      | Noida | Commerce   |    85 | 15000 | hockey | NULL              |      
 |   103 | Rohan  |    11 | B       | M      | Delhi | Science    |    78 | 15000 | hockey | NULL              |
 |   104 | Meera  |    12 | B       | F      | Agra  | Humanities |    95 | 10000 | hockey | NULL              |
-|   105 | Kabir  |    11 | A       | M      | Noida | Commerce   |    67 | 15000 | hockey | NULL              |
+|   105 | Kabir  |    11 | A       | M      | Noida | Commerce   |    67 | 15000 | hockey | NULL              |             
 |   106 | Ishita |    12 | A       | F      | Delhi | Science    |    88 | 15000 | hockey | NULL              |
-|   107 | Arjun  |    11 | B       | M      | Agra  | Science    |    91 | 15000 | hockey | NULL              |
+|   107 | Arjun  |    11 | B       | M      | Agra  | Science    |    91 | 15000 | hockey | NULL              |  
 |   108 | Diya   |    12 | B       | F      | Noida | Commerce   |    73 | 15000 | hockey | NULL              |
 |   109 | Vivaan |    11 | A       | M      | Delhi | Humanities |    82 | 10000 | hockey | NULL              |
 |   110 | Sanya  |    12 | A       | F      | Agra  | Science    |    96 | 15000 | hockey | NULL              |
@@ -936,4 +936,105 @@ mysql> select*from student_casestudy;
 |   115 | Kunal  |    11 | B       | M      | Delhi | Humanities |    71 | 10000 | hockey | NULL              |
 
 -> alter table student_casestudy change sports activity varchar(28);
+Question::: Display the no of students in each stream..
+select count(*), stream from student_casestudyyy group by stream;
++----------+------------+
+| count(*) | stream     |
++----------+------------+
+|        6 | Science    |
+|        5 | Commerce   |
+|        4 | Humanities |
++----------+------------+
+Question:::: Display the avg marks obtained by the students of each class..
+select avg(marks), class from student_casestudyyy group by class;
++-------------------+-------+
+| avg(marks)        | class |
++-------------------+-------+
+|            88.875 |    12 |
+| 75.85714285714286 |    11 |
++-------------------+-------+
+
+Question:::: 
+select min(marks),max(marks), stream from student_casestudyyy group by stream;
++------------+------------+------------+
+| min(marks) | max(marks) | stream     |
++------------+------------+------------+
+|         78 |         96 | Science    |
+|         58 |         93 | Commerce   |
+|         71 |         95 | Humanities |
++------------+------------+------------+
+
+QUESTION:::
+select sum(fees),city from student_casestudyyy group by city;
++-----------+-------+
+| sum(fees) | city  |
++-----------+-------+
+|     75000 | Delhi |
+|     70000 | Noida |
+|     55000 | Agra  |
++-----------+-------+
+
+
+select sum(fees),city, count(*) from student_casestudyyy group by city;
++-----------+-------+----------+
+| sum(fees) | city  | count(*) |
++-----------+-------+----------+                            for copunting the studnt
+|     75000 | Delhi |        6 |
+|     70000 | Noida |        5 |
+|     55000 | Agra  |        4 |
++-----------+-------+----------+
+
+select sum(fees), city from student_casestudyyy where city="Agra";
++-----------+------+
+| sum(fees) | city |
++-----------+------+  for agra only
+|     55000 | Agra |
++-----------+------+
+
+select stream, avg(marks) from student_casestudyyy group by stream having avg(marks)>85;
++---------+-------------------+
+| stream  | avg(marks)        |
++---------+-------------------+
+| Science | 88.16666666666667 |
++---------+-------------------+
+
+select stream, avg(marks) from student_casestudyyy group by stream;
++------------+-------------------+
+| stream     | avg(marks)        |
++------------+-------------------+
+| Science    | 88.16666666666667 |
+| Commerce   |              75.2 |
+| Humanities |             84.25 |
++------------+-------------------+
+
+
+select city, count(city) from student_casestudyyy group by city having count(city) > 3;
++-------+-------------+
+| city  | count(city) |
++-------+-------------+
+| Delhi |           6 |
+| Noida |           5 |
+| Agra  |           4 |
+
+select name, stream, city,marks from student_casestudyyy where marks>85 and marks<100;
++--------+------------+-------+-------+
+| name   | stream     | city  | marks |
++--------+------------+-------+-------+
+| Aarav  | Science    | Delhi |    92 |
+| Meera  | Humanities | Agra  |    95 |
+| Ishita | Science    | Delhi |    88 |
+| Arjun  | Science    | Agra  |    91 |
+| Sanya  | Science    | Agra  |    96 |
+| Tanya  | Humanities | Delhi |    89 |
+| Priya  | Commerce   | Noida |    93 |
++--------+------------+-------+-------+
+
+select name, stream,city, marks from student_casestudyyy where marks>85 and marks<100 and city!='delhi' and (stream='science' or stream='commerce') order by marks desc;
++-------+----------+-------+-------+
+| name  | stream   | city  | marks |
++-------+----------+-------+-------+
+| Sanya | Science  | Agra  |    96 |
+| Priya | Commerce | Noida |    93 |
+| Arjun | Science  | Agra  |    91 |
++-------+----------+-------+-------+
 
